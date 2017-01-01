@@ -1,3 +1,30 @@
-html{
+html,body{
+	width: 100%; 
+	height: 100%;
+}
 
+div.buttons{
+	width: 640px; 
+	height: 120px; 
+	margin: 0px auto 0px auto;
+	text-align: center; 
+}
+
+button{
+	margin: 5px; 
+}
+
+div.container{
+	width: 640px; 
+	height: 640px;
+	margin: 0px auto 0px auto; 
+	border: solid; 
+}
+
+div.square{
+	width: 40px; 
+	height: 40px; 
+	background-color: green; 
+	display: inline-block; 
+	border-color: red; 
 }
