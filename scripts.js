@@ -11,17 +11,12 @@
     });
 
 	//when the user clicks the reset button...
-	$('.reset').click(function(){
+	$('.basic').click(function(){
 			 $('.square').css('background-color','#fff'); 
  		     var n=prompt("Please enter squares per side for new grid (0-64)", 16);
 			 //if user entered a number...
 		     if (!isNaN(Number(n)) && Number(n)<=64 && Number(n)>=0){
-				jQuery('.container').html(''); 	//clear all divs 
-				for(var i = 0; i< Number(n)*Number(n); i++){	//create new grid of specified number of squares
-    				$('.container').append('<div class="square"></div>');
-				}
-				$('.square').width(640/Number(n)); 	//set the correct size and width to maintain same container size 
-				$('.square').height(640/Number(n)); 
+				generate(n); 
 				//set color to red when mouse enters 
 				$('.square').mouseenter(function() {
       				  $(this).css('background-color', '#333');
@@ -33,16 +28,11 @@
 
 	//when the user clicks the rainbow button...
 	$('.rainbow').click(function(){
- 		     var n=prompt("Please enter squares per side for new grid (0-64)", 16);
-			 //if user entered a number...
-		     if (!isNaN(Number(n)) && Number(n)<=64 && Number(n)>=0){
-				jQuery('.container').html(''); 	//clear all divs 
-				for(var i = 0; i< Number(n)*Number(n); i++){
-    				$('.container').append('<div class="square"></div>');
-				}
-				$('.square').width(640/Number(n)); 
-				$('.square').height(640/Number(n)); 
-				$('.square').css('background-color','#fff'); 	//set background of all squares to white 
+			var n=prompt("Please enter squares per side for new grid (0-64)", 16);
+		 	//if user entered a number...
+		    if (!isNaN(Number(n)) && Number(n)<=64 && Number(n)>=0)
+ 		    { 
+				generate(n); 
 				//set square to random color when mouse enters 
 				$('.square').mouseenter(function() {
 					  //generate random hex color 
@@ -57,7 +47,37 @@
 	});
 
 	//when user clicks blackandwhite button 
-	$('.bnw').click(function(){
-		alert("Coming soon!!");
+	$('.fadein').click(function(){
+		var n=prompt("Please enter squares per side for new grid (0-64)", 16);
+		 	//if user entered a number...
+		    if (!isNaN(Number(n)) && Number(n)<=64 && Number(n)>=0)
+ 		    { 
+				generate(n); 
+				$('.square').mouseenter(function() {
+					var bgcolor = $(this).css('background-color');
+					//grab first color 
+					var R = parseInt(bgcolor.substring(4,7));
+					console.log(R); 
+					//fade if not black 
+					if ( R > 50 ){
+						R = R - 50; 
+   					    $(this).css("background-color", "rgb(" + R + "," + R + "," + R + ")");
+					}
+				});
+			}
+			else 
+				alert("Number is not within 0-64"); 
 	});
+
+	//this function clears the container and creates a new container on n by n white colored grids 
+	function generate(n)
+	{
+				jQuery('.container').html(''); 	//clear all divs 
+				for(var i = 0; i< Number(n)*Number(n); i++){
+    				$('.container').append('<div class="square"></div>');
+				}
+				$('.square').width(640/Number(n)); 
+				$('.square').height(640/Number(n)); 
+				$('.square').css('background-color','#fff'); 	//set background of all squares to white 
+	}
 });
